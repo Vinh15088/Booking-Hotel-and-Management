@@ -38,6 +38,7 @@ public class User implements UserDetails {
 
     String role;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     List<Booking> bookings = new ArrayList<>();
 
