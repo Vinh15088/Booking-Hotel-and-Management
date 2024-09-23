@@ -2,10 +2,8 @@ package com.Seo.SeoHotel.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,25 +17,27 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @NotBlank(message = "Email is required")
-    private String email;
+    String email;
 
     @NotBlank(message = "Name is required")
-    private String name;
+    String name;
 
     @NotBlank(message = "Phone Number is required")
-    private String phoneNumber;
-    private String password;
-    private String role;
+    String phoneNumber;
+
+    String password;
+    String role;
 
     @ToString.Exclude
-    private List<Booking> bookings = new ArrayList<>();
+    List<Booking> bookings = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -4,10 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 import java.util.Locale;
@@ -17,36 +15,37 @@ import java.util.Locale;
 @NoArgsConstructor
 @Entity
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "bookings")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @NotNull(message = "check in data is required")
-    private LocalDate checkInDate;
+    LocalDate checkInDate;
 
     @Future(message = "check out data must be in the future")
-    private LocalDate checkOutDate;
+    LocalDate checkOutDate;
 
     @Min(value = 1, message = "Number of adults must not be less that 1")
-    private int numOfAdults;
+    int numOfAdults;
 
     @Min(value = 0, message = "Number of children must not be less that 0")
-    private int numOfChildren;
+    int numOfChildren;
 
-    private int totalNumOfGuest;
-    private String bookingConfirmationCode;
+    int totalNumOfGuest;
+    String bookingConfirmationCode;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     @ToString.Exclude
-    private User usre;
+    User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @ToString.Exclude
-    private Room room;
+    Room room;
 
     public void calculateTotalNumOfGuest() {
         this.totalNumOfGuest = this.numOfAdults + this.numOfChildren;
@@ -60,6 +59,5 @@ public class Booking {
     public void setNumOfAdults(int numOfAdults) {
         this.numOfAdults = numOfAdults;
         calculateTotalNumOfGuest();
-
     }
 }

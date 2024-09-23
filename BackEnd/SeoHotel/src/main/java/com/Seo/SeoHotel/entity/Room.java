@@ -1,10 +1,8 @@
 package com.Seo.SeoHotel.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +12,17 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "rooms")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String roomType;
-    private String roomPrice;
-    private String roomPhotoUrl;
-    private String roomDescription;
+    String roomType;
+    String roomPrice;
+    String roomPhotoUrl;
+    String roomDescription;
 
-    private List<Booking> bookings = new ArrayList<>();
+    List<Booking> bookings = new ArrayList<>();
 }
