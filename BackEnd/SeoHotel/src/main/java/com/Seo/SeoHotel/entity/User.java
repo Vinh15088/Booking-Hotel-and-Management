@@ -33,7 +33,9 @@ public class User implements UserDetails {
     @NotBlank(message = "Phone Number is required")
     String phoneNumber;
 
+    @NotBlank(message = "Password is required")
     String password;
+
     String role;
 
     @ToString.Exclude
