@@ -24,5 +24,6 @@ public class Room {
     String roomPhotoUrl;
     String roomDescription;
 
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Booking> bookings = new ArrayList<>();
 }
