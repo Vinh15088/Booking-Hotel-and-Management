@@ -13,11 +13,13 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BookingDTO {
+    Long id;
     LocalDate checkInDate;
     LocalDate checkOutDate;
     int numOfAdults;
     int numOfChildren;
-    int totelNumOfGuest;
+    int totalNumOfGuest;
+    String bookingConfirmationCode;
     UserDTO user;
     RoomDTO room;
 }

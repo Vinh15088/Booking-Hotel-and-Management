@@ -13,6 +13,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoomDTO {
+    Long Id;
     String roomType;
     String roomPrice;
     String roomPhotoUrl;

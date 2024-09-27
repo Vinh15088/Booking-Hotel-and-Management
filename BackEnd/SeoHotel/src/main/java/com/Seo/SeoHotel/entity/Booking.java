@@ -8,9 +8,11 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -43,7 +45,7 @@ public class Booking {
     User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "room_id")
     @ToString.Exclude
     Room room;
 
@@ -60,4 +62,5 @@ public class Booking {
         this.numOfAdults = numOfAdults;
         calculateTotalNumOfGuest();
     }
+
 }

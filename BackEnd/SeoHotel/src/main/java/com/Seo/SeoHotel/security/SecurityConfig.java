@@ -58,7 +58,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    private AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 
         // get user's details in db (username, password)
@@ -71,7 +71,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    private PasswordEncoder passWordEncoder() {
+    public PasswordEncoder passWordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
